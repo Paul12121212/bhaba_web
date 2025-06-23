@@ -1181,6 +1181,181 @@ const ProductCard = ({ product, onClick, viewMode = 'grid' }) => {
 };
 
 // Product Detail Modal (Responsive)
+// const ProductDetailModal = ({ product, isOpen, onClose }) => {
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+//   if (!isOpen || !product) return null;
+
+//   const discountedPrice = product.discount > 0 
+//     ? product.price * (1 - product.discount / 100) 
+//     : product.price;
+
+//   const handleContactVendor = (type) => {
+//     const message = `Hi, I'm interested in ${product.product_name}`;
+    
+//     if (type === 'whatsapp') {
+//       window.open(`https://wa.me/255${product.mobile_number.substring(1)}?text=${encodeURIComponent(message)}`, '_blank');
+//     } else if (type === 'call') {
+//       window.open(`tel:${product.mobile_number}`, '_self');
+//     }
+//   };
+
+//   const nextImage = () => {
+//     setCurrentImageIndex((prev) => 
+//       prev === product.product_images.length - 1 ? 0 : prev + 1
+//     );
+//   };
+
+//   const prevImage = () => {
+//     setCurrentImageIndex((prev) => 
+//       prev === 0 ? product.product_images.length - 1 : prev - 1
+//     );
+//   };
+
+//   return (
+//     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4">
+//       <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+//         <div className="sticky top-0 bg-white border-b px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+//           <h2 className="text-lg sm:text-xl font-bold text-gray-900 truncate max-w-[80%]">{product.product_name}</h2>
+//           <button
+//             onClick={onClose}
+//             className="p-1 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
+//           >
+//             <X className="h-5 w-5 sm:h-6 sm:w-6" />
+//           </button>
+//         </div>
+        
+//         <div className="p-4 sm:p-6">
+//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+//             {/* Image Gallery */}
+//             <div className="space-y-3 sm:space-y-4">
+//               <div className="relative">
+//                 <LazyImage
+//                   src={product.product_images?.[currentImageIndex] || '/placeholder-image.jpg'}
+//                   alt={product.product_name}
+//                   className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg"
+//                 />
+//                 {product.product_images && product.product_images.length > 1 && (
+//                   <>
+//                     <button
+//                       onClick={prevImage}
+//                       className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 sm:p-2 rounded-full hover:bg-opacity-70 transition-all"
+//                     >
+//                       <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+//                     </button>
+//                     <button
+//                       onClick={nextImage}
+//                       className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 sm:p-2 rounded-full hover:bg-opacity-70 transition-all"
+//                     >
+//                       <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
+//                     </button>
+//                   </>
+//                 )}
+//               </div>
+              
+//               {product.product_images && product.product_images.length > 1 && (
+//                 <div className="flex gap-2 overflow-x-auto pb-2">
+//                   {product.product_images.map((image, index) => (
+//                     <button
+//                       key={index}
+//                       onClick={() => setCurrentImageIndex(index)}
+//                       className={`flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-md overflow-hidden border-2 ${
+//                         index === currentImageIndex ? 'border-blue-500' : 'border-gray-200'
+//                       }`}
+//                     >
+//                       <LazyImage
+//                         src={image}
+//                         alt={`${product.product_name} ${index + 1}`}
+//                         className="w-full h-full object-cover"
+//                       />
+//                     </button>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+            
+//             {/* Product Info */}
+//             <div className="space-y-4 sm:space-y-6">
+//               <div>
+//                 <div className="flex items-center gap-2 mb-2">
+//                   <span className="text-xs sm:text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded-md">
+//                     {product.categoryName}
+//                   </span>
+//                   {!product.isAvailable && (
+//                     <span className="text-xs sm:text-sm text-red-600 bg-red-50 px-2 py-1 rounded-md">
+//                       Out of Stock
+//                     </span>
+//                   )}
+//                 </div>
+                
+//                 <div className="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+//                   <div>
+//                     <span className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600">{formatCurrency(discountedPrice)}</span>
+//                     {product.discount > 0 && (
+//                       <span className="text-sm sm:text-lg text-gray-500 line-through ml-2">{formatCurrency(product.price)}</span>
+//                     )}
+//                   </div>
+//                   {product.discount > 0 && (
+//                     <span className="bg-red-500 text-white px-2 py-1 rounded-md text-xs sm:text-sm font-semibold">
+//                       -{product.discount}% OFF
+//                     </span>
+//                   )}
+//                 </div>
+//               </div>
+              
+//               <div>
+//                 <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2">Description</h3>
+//                 <p className="text-gray-700 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+//                   {product.description}
+//                 </p>
+//               </div>
+              
+//               {product.details && (
+//                 <div>
+//                   <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2">Details</h3>
+//                   <p className="text-gray-700 text-xs sm:text-sm">{product.details}</p>
+//                 </div>
+//               )}
+              
+//               <div>
+//                 <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2">Vendor</h3>
+//                 <p className="text-gray-700 text-xs sm:text-sm">{product.vendorName}</p>
+//                 <p className="text-gray-600 text-xs sm:text-sm">Contact: {product.mobile_number}</p>
+//               </div>
+              
+//               {product.moq > 0 && (
+//                 <div>
+//                   <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2">Minimum Order Quantity</h3>
+//                   <p className="text-gray-700 text-xs sm:text-sm">{product.moq} units</p>
+//                 </div>
+//               )}
+              
+//               <div className="flex gap-2 sm:gap-4 pt-2 sm:pt-4">
+//                 <button
+//                   onClick={() => handleContactVendor('whatsapp')}
+//                   className="flex-1 bg-green-500 text-white py-2 sm:py-3 px-3 sm:px-6 rounded-md hover:bg-green-600 transition-colors flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold"
+//                 >
+//                   <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />
+//                   WhatsApp
+//                 </button>
+//                 <button
+//                   onClick={() => handleContactVendor('call')}
+//                   className="flex-1 bg-blue-500 text-white py-2 sm:py-3 px-3 sm:px-6 rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold"
+//                 >
+//                   <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
+//                   Call
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+
+// Modified Product Detail Modal (Responsive)
 const ProductDetailModal = ({ product, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
@@ -1190,10 +1365,35 @@ const ProductDetailModal = ({ product, isOpen, onClose }) => {
     ? product.price * (1 - product.discount / 100) 
     : product.price;
 
-  const handleContactVendor = (type) => {
-    const message = `Hi, I'm interested in ${product.product_name}`;
+ const handleContactVendor = (e, type) => {
+    e.stopPropagation();
+    
+    // Create a more detailed message with product info
+    const productImage = product.product_images?.[0] || '';
+    const originalPrice = formatCurrency(product.price);
+    const finalPrice = formatCurrency(discountedPrice);
+    const discountText = product.discount > 0 ? ` (${product.discount}% OFF)` : '';
+    
+    let message = `Hi, I'm interested in your product:\n\n`;
+    message += `*Product Name:* ${product.product_name}\n`;
+    message += `*Price:* ${finalPrice}${discountText}\n`;
+    if (product.discount > 0) {
+      message += `*Original Price:* ${originalPrice}\n`;
+    }
+    message += `*Category:* ${product.categoryName}\n`;
+    if (product.description) {
+      message += `\n*Description:* ${product.description}\n`;
+    }
+    message += `\nPlease let me know more about this product.`;
     
     if (type === 'whatsapp') {
+             // If there's an image, we'll first send the image URL as text
+      // Note: WhatsApp Web doesn't support sending images via URL in the initial message
+      // So we include it as text that the vendor can click
+      if (productImage) {
+        message += `\n\n*Product Image:* ${productImage}`;
+      }
+      
       window.open(`https://wa.me/255${product.mobile_number.substring(1)}?text=${encodeURIComponent(message)}`, '_blank');
     } else if (type === 'call') {
       window.open(`tel:${product.mobile_number}`, '_self');
