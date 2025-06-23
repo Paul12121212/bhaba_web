@@ -1,0 +1,410 @@
+{
+  "collection_name": "vendor_store",
+  "document_id": "NISK9aLgXwMX1TFgMA6kOpcal5l2",
+  "document_exists": true,
+  "main_document": {
+    "field_count": 9,
+    "structure": {
+      "store_name": {
+        "type": "string",
+        "sample_value": "Bhabalimited"
+      },
+      "no_of_categories": {
+        "type": "integer",
+        "sample_value": 8
+      },
+      "nin_number": {
+        "type": "string",
+        "sample_value": "20020831231230000124"
+      },
+      "store_owner": {
+        "type": "string",
+        "sample_value": "bhaba"
+      },
+      "business_license": {
+        "type": "string",
+        "sample_value": "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendors_store%2Flicense%..."
+      },
+      "location_address": {
+        "type": "string",
+        "sample_value": "arusha-Tanzania"
+      },
+      "tin_number": {
+        "type": "string",
+        "sample_value": "176774983"
+      },
+      "mobile_number": {
+        "type": "string",
+        "sample_value": "0657305278"
+      },
+      "store_logo": {
+        "type": "string",
+        "sample_value": "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendors_store%2Flogo%2FN..."
+      }
+    }
+  },
+  "subcollections_count": 2,
+  "subcollections": {
+    "categories": {
+      "total_documents_analyzed": 8,
+      "document_structure": {
+        "created_at": {
+          "type": "timestamp",
+          "sample_value": "2024-12-23 14:20:23.388758+00:00"
+        },
+        "category_name": {
+          "type": "string",
+          "sample_value": "Smokeables"
+        },
+        "no_of_products": {
+          "type": "integer",
+          "sample_value": 33
+        }
+      },
+      "sample_documents": [
+        {
+          "document_id": "6QJ3fBXUMBGrag0zzq1K",
+          "fields": [
+            "created_at",
+            "category_name",
+            "no_of_products"
+          ],
+          "sample_data": {
+            "created_at": "2024-12-23 14:20:23.388758+00:00",
+            "category_name": "Smokeables",
+            "no_of_products": 33
+          }
+        },
+        {
+          "document_id": "7rK2fBBqHfiU6TuhMVEA",
+          "fields": [
+            "created_at",
+            "category_name",
+            "no_of_products"
+          ],
+          "sample_data": {
+            "created_at": "2024-11-13 20:50:03.501713+00:00",
+            "category_name": "Shoes",
+            "no_of_products": 111
+          }
+        },
+        {
+          "document_id": "IA7jP1MYrqI2HhpIj4z4",
+          "fields": [
+            "created_at",
+            "category_name",
+            "no_of_products"
+          ],
+          "sample_data": {
+            "created_at": "2024-12-18 13:40:23.586294+00:00",
+            "category_name": "Home Appliances",
+            "no_of_products": 83
+          }
+        }
+      ],
+      "field_summary": {
+        "total_unique_fields": 3,
+        "field_names": [
+          "created_at",
+          "category_name",
+          "no_of_products"
+        ]
+      },
+      "subcollections": {
+        "products": {
+          "total_documents_analyzed": 5,
+          "document_structure": {
+            "product_images": {
+              "type": "array<string>",
+              "sample_value": [
+                "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendor_products%2FNISK9aLgXwMX1TFgMA6kOpcal5l2%2F1000014450.png?alt=media&token=02a882d5-d132-4560-b003-db2a41343220",
+                "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendor_products%2FNISK9aLgXwMX1TFgMA6kOpcal5l2%2F1000014451.png?alt=media&token=391cee31-1845-4ba1-a850-629882b11c40"
+              ],
+              "array_length": 2
+            },
+            "added_at": {
+              "type": "timestamp",
+              "sample_value": "2024-12-23 15:57:16.665867+00:00"
+            },
+            "isVerified": {
+              "type": "boolean",
+              "sample_value": true
+            },
+            "price": {
+              "type": "string",
+              "sample_value": "12000"
+            },
+            "details": {
+              "type": "string",
+              "sample_value": ""
+            },
+            "description": {
+              "type": "string",
+              "sample_value": "Disposable Vape ni kifaa cha kuvuta sigara za umeme kinachotumika mara moja na kutupwa baada ya kuma..."
+            },
+            "product_name": {
+              "type": "string",
+              "sample_value": "DISPOSABLE VAPE PUFFS 3000"
+            },
+            "isAvailable": {
+              "type": "boolean",
+              "sample_value": true
+            },
+            "discount": {
+              "type": "string",
+              "sample_value": "0"
+            },
+            "tier_pricing": {
+              "type": "array<string>",
+              "sample_value": [
+                "1-9=5000.0",
+                "10-49=4000.0",
+                "50-99=3500.0",
+                "..."
+              ],
+              "array_length": 4
+            }
+          },
+          "sample_documents": [
+            {
+              "document_id": "0Q76rZM0yL1gpbDILZlO",
+              "fields": [
+                "product_images",
+                "added_at",
+                "isVerified",
+                "price",
+                "details",
+                "description",
+                "product_name",
+                "isAvailable",
+                "discount"
+              ],
+              "sample_data": {
+                "product_images": [
+                  "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendor_products%2FNISK9aLgXwMX1TFgMA6kOpcal5l2%2F1000014450.png?alt=media&token=02a882d5-d132-4560-b003-db2a41343220",
+                  "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendor_products%2FNISK9aLgXwMX1TFgMA6kOpcal5l2%2F1000014451.png?alt=media&token=391cee31-1845-4ba1-a850-629882b11c40"
+                ],
+                "added_at": "2024-12-23 15:57:16.665867+00:00",
+                "isVerified": true,
+                "price": "12000",
+                "details": "",
+                "description": "Disposable Vape ni kifaa cha kuvuta sigara za umeme kinachotumika mara moja na kutupwa baada ya kuma...",
+                "product_name": "DISPOSABLE VAPE PUFFS 3000",
+                "isAvailable": true,
+                "discount": "0"
+              }
+            },
+            {
+              "document_id": "0kiuPx8M1zQ4ifmZCD6j",
+              "fields": [
+                "product_images",
+                "added_at",
+                "isAvailable",
+                "isVerified",
+                "details",
+                "description",
+                "price",
+                "product_name",
+                "discount"
+              ],
+              "sample_data": {
+                "product_images": [
+                  "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendor_products%2FNISK9aLgXwMX1TFgMA6kOpcal5l2%2F1000014072.png?alt=media&token=6506e6c9-4d8d-48a2-82f1-43bdc7fe7911"
+                ],
+                "added_at": "2024-12-23 16:12:47.016570+00:00",
+                "isAvailable": true,
+                "isVerified": true,
+                "details": "",
+                "description": "Holder wa Makaa ya Hookah ni kifaa kinachotumika kushikilia makaa wakati wa kuvuta hookah. Kinapozun...",
+                "price": "12000",
+                "product_name": "HOOKAH CHARCOAL HOLDER",
+                "discount": "0"
+              }
+            },
+            {
+              "document_id": "0n98Axu7XnoTd8d7kuF7",
+              "fields": [
+                "tier_pricing",
+                "product_images",
+                "added_at",
+                "isAvailable",
+                "isVerified",
+                "details",
+                "description",
+                "price",
+                "product_name",
+                "discount"
+              ],
+              "sample_data": {
+                "tier_pricing": [
+                  "1-9=5000.0",
+                  "10-49=4000.0",
+                  "50-99=3500.0",
+                  "..."
+                ],
+                "product_images": [
+                  "https://firebasestorage.googleapis.com/v0/b/bhaba-store-c17ba.appspot.com/o/vendor_products%2FNISK9aLgXwMX1TFgMA6kOpcal5l2%2F1000014045.jpg?alt=media&token=16646089-2e1a-499c-9882-87d54f7f8802"
+                ],
+                "added_at": "2024-12-23 16:02:36.238553+00:00",
+                "isAvailable": true,
+                "isVerified": true,
+                "details": "",
+                "description": "Shisha filters ni sehemu ya kifaa cha shisha (au hookah) inayotumika kufuta moshi kabla haujafika kw...",
+                "price": "5000",
+                "product_name": "SHISHA FILTERS",
+                "discount": "0"
+              }
+            }
+          ],
+          "field_summary": {
+            "total_unique_fields": 10,
+            "field_names": [
+              "product_images",
+              "added_at",
+              "isVerified",
+              "price",
+              "details",
+              "description",
+              "product_name",
+              "isAvailable",
+              "discount",
+              "tier_pricing"
+            ]
+          }
+        }
+      }
+    },
+    "subscriptions": {
+      "total_documents_analyzed": 4,
+      "document_structure": {
+        "timestamp": {
+          "type": "timestamp",
+          "sample_value": "2025-02-15 11:55:34.765000+00:00"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "sample_value": "M-Pesa"
+        },
+        "amount": {
+          "type": "float",
+          "sample_value": 279000.0
+        },
+        "phoneNumber": {
+          "type": "string",
+          "sample_value": "0759117104"
+        },
+        "startDate": {
+          "type": "timestamp",
+          "sample_value": "2025-06-04 16:55:44.558000+00:00"
+        },
+        "price": {
+          "type": "float",
+          "sample_value": 279000.0
+        },
+        "storeName": {
+          "type": "string",
+          "sample_value": "Bhabalimited"
+        },
+        "status": {
+          "type": "string",
+          "sample_value": "active"
+        },
+        "vendorId": {
+          "type": "string",
+          "sample_value": "NISK9aLgXwMX1TFgMA6kOpcal5l2"
+        },
+        "planId": {
+          "type": "string",
+          "sample_value": "quarterly"
+        },
+        "endDate": {
+          "type": "timestamp",
+          "sample_value": "2025-09-02 16:55:44.558000+00:00"
+        }
+      },
+      "sample_documents": [
+        {
+          "document_id": "0alPnKLAWR8iWPt25Com",
+          "fields": [
+            "timestamp",
+            "paymentMethod",
+            "amount",
+            "phoneNumber"
+          ],
+          "sample_data": {
+            "timestamp": "2025-02-15 11:55:34.765000+00:00",
+            "paymentMethod": "M-Pesa",
+            "amount": 279000.0,
+            "phoneNumber": "0759117104"
+          }
+        },
+        {
+          "document_id": "FaaC9ZdJGZyyv1HK5zVA",
+          "fields": [
+            "startDate",
+            "price",
+            "storeName",
+            "status",
+            "vendorId",
+            "planId",
+            "endDate"
+          ],
+          "sample_data": {
+            "startDate": "2025-06-04 16:55:44.558000+00:00",
+            "price": 279000.0,
+            "storeName": "Bhabalimited",
+            "status": "active",
+            "vendorId": "NISK9aLgXwMX1TFgMA6kOpcal5l2",
+            "planId": "quarterly",
+            "endDate": "2025-09-02 16:55:44.558000+00:00"
+          }
+        },
+        {
+          "document_id": "N9hOeLIFtZwxRkl0Ynrq",
+          "fields": [
+            "startDate",
+            "price",
+            "storeName",
+            "status",
+            "vendorId",
+            "planId",
+            "endDate"
+          ],
+          "sample_data": {
+            "startDate": "2025-02-15 11:55:33.556000+00:00",
+            "price": 279000.0,
+            "storeName": "Bhabalimited",
+            "status": "active",
+            "vendorId": "NISK9aLgXwMX1TFgMA6kOpcal5l2",
+            "planId": "quarterly",
+            "endDate": "2025-05-16 11:55:33.556000+00:00"
+          }
+        }
+      ],
+      "field_summary": {
+        "total_unique_fields": 11,
+        "field_names": [
+          "timestamp",
+          "paymentMethod",
+          "amount",
+          "phoneNumber",
+          "startDate",
+          "price",
+          "storeName",
+          "status",
+          "vendorId",
+          "planId",
+          "endDate"
+        ]
+      }
+    }
+  },
+  "analysis_summary": {
+    "total_subcollections": 2,
+    "main_document_fields": 9,
+    "subcollection_names": [
+      "categories",
+      "subscriptions"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+ecommerce-app/
+├── backend/
+│   ├── index.js
+│   └── serviceAccountKey.json  ← Your Firebase Admin SDK (you’ll add this)
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── App.js
+│       └── index.js
+│   └── package.json
+
+
+src/
+├── components/          # Reusable UI components
+├── pages/               # Customer-facing pages
+├── admin/               # Admin dashboard pages
+├── contexts/            # Global state management (e.g., Auth, Cart)
+├── utils/               # Utility functions and API handlers
+├── styles/              # Tailwind CSS configuration
+└── App.jsx              # Main application component
+
+
+cd backend
+node index.js
+
+
+cd my-app
+npm start
+
+
+
+
