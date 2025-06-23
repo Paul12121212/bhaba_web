@@ -869,7 +869,7 @@ const handlePageChange = (page) => {
         </div>
 
         {/* Products Grid/List */}
-        {currentProducts.length === 0 ? (
+        {/* {currentProducts.length === 0 ? (
           <div className="text-center py-12">
             <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No products found</h3>
@@ -890,7 +890,31 @@ const handlePageChange = (page) => {
               />
             ))}
           </div>
-        )}
+        )} */}
+
+        // Products Grid/List
+{currentProducts.length === 0 ? (
+  <div className="text-center py-12">
+    <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+    <h3 className="text-lg font-semibold text-gray-900 mb-2">No products found</h3>
+    <p className="text-gray-600">Try adjusting your search or filters</p>
+  </div>
+) : (
+  <div className={
+    viewMode === 'grid'
+      ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6"
+      : "space-y-4"
+  }>
+    {currentProducts.map((product) => (
+      <ProductCard
+        key={product.id}
+        product={product}
+        onClick={handleProductClick}
+        viewMode={viewMode}
+      />
+    ))}
+  </div>
+)}
 
         {/* Pagination */}
         {/* {totalPages > 1 && (
@@ -1097,3 +1121,5 @@ const handlePageChange = (page) => {
 };
 
 export default ECommerceApp;
+
+
