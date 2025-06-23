@@ -941,6 +941,73 @@ const handlePageChange = (page) => {
         )} */}
 
         {/* Pagination - Responsive */}
+// {totalPages > 1 && (
+//   <div className="flex items-center justify-center mt-6 sm:mt-8 gap-1 sm:gap-2">
+//     <button
+//       onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+//       disabled={currentPage === 1 || showAllProducts}
+//       className="px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+//     >
+//       Previous
+//     </button>
+    
+//     {!showAllProducts && Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+//       let pageNumber;
+//       if (totalPages <= 5) {
+//         pageNumber = i + 1;
+//       } else if (currentPage <= 3) {
+//         pageNumber = i + 1;
+//       } else if (currentPage >= totalPages - 2) {
+//         pageNumber = totalPages - 4 + i;
+//       } else {
+//         pageNumber = currentPage - 2 + i;
+//       }
+      
+//       return (
+//         <button
+//           key={pageNumber}
+//           onClick={() => handlePageChange(pageNumber)}
+//           className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium rounded-md ${
+//             currentPage === pageNumber
+//               ? 'bg-blue-500 text-white'
+//               : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+//           }`}
+//         >
+//           {pageNumber}
+//         </button>
+//       );
+//     })}
+    
+//     <button
+//       onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+//       disabled={currentPage === totalPages || showAllProducts}
+//       className="px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+//     >
+//       Next
+//     </button>
+
+//     {!showAllProducts ? (
+//       <button
+//         onClick={handleSeeAll}
+//         className="px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+//       >
+//         See All
+//       </button>
+//     ) : (
+//       <button
+//         onClick={() => {
+//           setShowAllProducts(false);
+//           handlePageChange(1);
+//         }}
+//         className="px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+//       >
+//         Show Pages
+//       </button>
+//     )}
+//   </div>
+// )}
+
+{/* Pagination - Responsive */}
 {totalPages > 1 && (
   <div className="flex items-center justify-center mt-6 sm:mt-8 gap-1 sm:gap-2">
     <button
@@ -1006,6 +1073,7 @@ const handlePageChange = (page) => {
     )}
   </div>
 )}
+
       </main>
 
       {/* Product Detail Modal */}
