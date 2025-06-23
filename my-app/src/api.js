@@ -1,6 +1,4 @@
-const API_BASE = process.env.NODE_ENV === 'development' 
-  ? 'http://localhost:5000' 
-  : '/api';
+const API_BASE ='https://bhaba-web.onrender.com';
 
 export const handleResponse = async (response) => {
   const contentType = response.headers.get('content-type');
