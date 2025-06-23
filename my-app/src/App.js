@@ -686,10 +686,10 @@ const ECommerceApp = () => {
 
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  const currentProducts = filteredProducts.slice(
-    (currentPage - 1) * productsPerPage,
-    currentPage * productsPerPage
-  );
+  // const currentProducts = filteredProducts.slice(
+  //   (currentPage - 1) * productsPerPage,
+  //   currentPage * productsPerPage
+  // );
 
 // Update the currentProducts calculation:
 const currentProducts = showAllProducts 
