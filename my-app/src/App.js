@@ -610,7 +610,7 @@ const ECommerceApp = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  const [showAllProducts, setShowAllProducts] = useState(false);
+    const [showAllProducts, setShowAllProducts] = useState(false);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -698,7 +698,7 @@ const currentProducts = showAllProducts
       (currentPage - 1) * productsPerPage,
       currentPage * productsPerPage
     );
-  
+
   // Reset pagination when filters change
   useEffect(() => {
     setCurrentPage(1);
@@ -755,70 +755,70 @@ const handlePageChange = (page) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header - Responsive */}
+      {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between h-auto sm:h-16 py-2 sm:py-0">
-            <div className="flex items-center mb-2 sm:mb-0">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Bhaba MarketPlace</h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold text-gray-900">Bhaba MarketPlace</h1>
             </div>
             
-            {/* Search Bar - Responsive */}
-            <div className="w-full sm:flex-1 sm:max-w-2xl sm:mx-4">
+            {/* Search Bar */}
+            <div className="flex-1 max-w-2xl mx-8">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 sm:h-5 sm:w-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
                   placeholder="Search products, vendors..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
             
-            {/* Action Buttons - Responsive */}
-            <div className="flex items-center gap-2 mt-2 sm:mt-0">
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowFilters(true)}
-                className="p-1 sm:p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
                 title="Filters"
               >
-                <Filter className="h-4 w-4 sm:h-5 sm:w-5" />
+                <Filter className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
-                className="p-1 sm:p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
                 title={`Switch to ${viewMode === 'grid' ? 'list' : 'grid'} view`}
               >
-                {viewMode === 'grid' ? <List className="h-4 w-4 sm:h-5 sm:w-5" /> : <Grid className="h-4 w-4 sm:h-5 sm:w-5" />}
+                {viewMode === 'grid' ? <List className="h-5 w-5" /> : <Grid className="h-5 w-5" />}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content - Responsive */}
-      <main className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 py-4 sm:py-6 md:py-8">
-        {/* Results Info - Responsive */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-2 sm:gap-0">
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Results Info */}
+        <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-base sm:text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-gray-900">
               {searchQuery ? `Search results for "${searchQuery}"` : 'All Products'}
             </h2>
-            <p className="text-xs sm:text-sm text-gray-600">
+            <p className="text-sm text-gray-600">
               {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
             </p>
           </div>
           
-          {/* Active Filters - Responsive */}
+          {/* Active Filters */}
           {(filters.categories.length > 0 || filters.vendors.length > 0 || filters.inStock) && (
-            <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-              <span className="text-xs sm:text-sm text-gray-600">Active filters:</span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">Active filters:</span>
               {filters.categories.map(categoryId => {
                 const category = categories.find(c => c.id === categoryId);
                 return category ? (
-                  <span key={categoryId} className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-md text-xs">
+                  <span key={categoryId} className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 px-2 py-1 rounded-md text-xs">
                     {category.category_name}
                     <button
                       onClick={() => {
@@ -837,7 +837,7 @@ const handlePageChange = (page) => {
               {filters.vendors.map(vendorId => {
                 const vendor = vendors.find(v => v.id === vendorId);
                 return vendor ? (
-                  <span key={vendorId} className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-md text-xs">
+                  <span key={vendorId} className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-2 py-1 rounded-md text-xs">
                     {vendor.store_name}
                     <button
                       onClick={() => {
@@ -854,7 +854,7 @@ const handlePageChange = (page) => {
                 ) : null;
               })}
               {filters.inStock && (
-                <span className="inline-flex items-center gap-1 bg-purple-100 text-purple-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-md text-xs">
+                <span className="inline-flex items-center gap-1 bg-purple-100 text-purple-800 px-2 py-1 rounded-md text-xs">
                   In Stock Only
                   <button
                     onClick={() => setFilters({ ...filters, inStock: false })}
@@ -868,18 +868,18 @@ const handlePageChange = (page) => {
           )}
         </div>
 
-        {/* Products Grid/List - Responsive */}
+        {/* Products Grid/List */}
         {currentProducts.length === 0 ? (
-          <div className="text-center py-8 sm:py-12">
-            <AlertCircle className="h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mx-auto mb-3 sm:mb-4" />
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">No products found</h3>
-            <p className="text-xs sm:text-sm text-gray-600">Try adjusting your search or filters</p>
+          <div className="text-center py-12">
+            <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filters</p>
           </div>
         ) : (
           <div className={
             viewMode === 'grid'
-              ? "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
-              : "space-y-3 sm:space-y-4"
+              ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+              : "space-y-4"
           }>
             {currentProducts.map((product) => (
               <ProductCard
@@ -892,55 +892,55 @@ const handlePageChange = (page) => {
           </div>
         )}
 
-        // {/* Pagination - Responsive */}
-        // {totalPages > 1 && (
-        //   <div className="flex items-center justify-center mt-6 sm:mt-8 gap-1 sm:gap-2">
-        //     <button
-        //       onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-        //       disabled={currentPage === 1}
-        //       className="px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-        //     >
-        //       Previous
-        //     </button>
+        {/* Pagination */}
+        {/* {totalPages > 1 && (
+          <div className="flex items-center justify-center mt-8 gap-2">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Previous
+            </button>
             
-        //     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-        //       let pageNumber;
-        //       if (totalPages <= 5) {
-        //         pageNumber = i + 1;
-        //       } else if (currentPage <= 3) {
-        //         pageNumber = i + 1;
-        //       } else if (currentPage >= totalPages - 2) {
-        //         pageNumber = totalPages - 4 + i;
-        //       } else {
-        //         pageNumber = currentPage - 2 + i;
-        //       }
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              let pageNumber;
+              if (totalPages <= 5) {
+                pageNumber = i + 1;
+              } else if (currentPage <= 3) {
+                pageNumber = i + 1;
+              } else if (currentPage >= totalPages - 2) {
+                pageNumber = totalPages - 4 + i;
+              } else {
+                pageNumber = currentPage - 2 + i;
+              }
               
-        //       return (
-        //         <button
-        //           key={pageNumber}
-        //           onClick={() => setCurrentPage(pageNumber)}
-        //           className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium rounded-md ${
-        //             currentPage === pageNumber
-        //               ? 'bg-blue-500 text-white'
-        //               : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
-        //           }`}
-        //         >
-        //           {pageNumber}
-        //         </button>
-        //       );
-        //     })}
+              return (
+                <button
+                  key={pageNumber}
+                  onClick={() => setCurrentPage(pageNumber)}
+                  className={`px-3 py-2 text-sm font-medium rounded-md ${
+                    currentPage === pageNumber
+                      ? 'bg-blue-500 text-white'
+                      : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
             
-        //     <button
-        //       onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-        //       disabled={currentPage === totalPages}
-        //       className="px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-        //     >
-        //       Next
-        //     </button>
-        //   </div>
-        // )}
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+            </button>
+          </div>
+        )} */}
 
-          {/* Pagination - Responsive */}
+        {/* Pagination - Responsive */}
 {totalPages > 1 && (
   <div className="flex items-center justify-center mt-6 sm:mt-8 gap-1 sm:gap-2">
     <button
