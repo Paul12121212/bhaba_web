@@ -1,5 +1,5 @@
 const API_BASE = process.env.NODE_ENV === 'development' 
-  ? 'http://localhost:5000' 
+  ? 'http://192.168.1.165:5000' 
   : '/api';
 
 export const handleResponse = async (response) => {
@@ -54,7 +54,20 @@ export const fetchCategoryProducts = async (vendorId, categoryId) => {
   return handleResponse(response);
 };
 
+
 export const fetchAllProducts = async () => {
   const response = await fetch(`${API_BASE}/products`);
+  const data = await handleResponse(response);
+
+  if (!Array.isArray(data)) {
+    console.warn("Expected an array, but got:", data);
+    return []; // fallback to empty array
+  }
+
+  return data;
+};
+
+export const fetchAllCategories = async () => {
+  const response = await fetch(`${API_BASE}/categories`);
   return handleResponse(response);
 };
