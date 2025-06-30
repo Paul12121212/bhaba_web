@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import React, { useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Phone, MessageCircle, X } from 'lucide-react';
@@ -8,27 +9,18 @@ import PropTypes from 'prop-types';
 
 
 
-// const ProductDetailPage = ({ products }) => {
-//   const { productId } = useParams();
-//   const navigate = useNavigate();
-//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  
-
-//   const product = products.find(p => p.id.toString() === productId);
-
-
 const ProductDetailPage = ({ products, vendors, categories }) => {
   const { productId } = useParams();
+useEffect(() => {
+  window.scrollTo(0, 0); // Instantly jumps to top
+}, [productId]);
+
+
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const product = products.find(p => p.id.toString() === productId);
   
-  // ... rest of your component remains the same
-
-  
-  // Calculate related products
   const relatedProducts = useMemo(() => {
     if (!product) return [];
     return products.filter(p => 
@@ -317,9 +309,6 @@ const ProductDetailPage = ({ products, vendors, categories }) => {
   );
 };
 
-// ProductDetailPage.propTypes = {
-//   products: PropTypes.array.isRequired
-// };
 
 ProductDetailPage.propTypes = {
   products: PropTypes.array.isRequired,
