@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 const API_BASE = process.env.NODE_ENV === 'development' 
   ? 'http://192.168.1.165:5000' 
   : '/api';
+=======
+const API_BASE ='https://bhaba-web.onrender.com';
+>>>>>>> 6efe9b167cc531f369be4a0f8a347e95d58c4807
 
 export const handleResponse = async (response) => {
   const contentType = response.headers.get('content-type');
