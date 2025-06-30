@@ -8,12 +8,25 @@ import PropTypes from 'prop-types';
 
 
 
-const ProductDetailPage = ({ products }) => {
+// const ProductDetailPage = ({ products }) => {
+//   const { productId } = useParams();
+//   const navigate = useNavigate();
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  
+
+//   const product = products.find(p => p.id.toString() === productId);
+
+
+const ProductDetailPage = ({ products, vendors, categories }) => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   const product = products.find(p => p.id.toString() === productId);
+  
+  // ... rest of your component remains the same
+
   
   // Calculate related products
   const relatedProducts = useMemo(() => {
@@ -304,8 +317,14 @@ const ProductDetailPage = ({ products }) => {
   );
 };
 
+// ProductDetailPage.propTypes = {
+//   products: PropTypes.array.isRequired
+// };
+
 ProductDetailPage.propTypes = {
-  products: PropTypes.array.isRequired
+  products: PropTypes.array.isRequired,
+  vendors: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired
 };
 
 export default ProductDetailPage;
