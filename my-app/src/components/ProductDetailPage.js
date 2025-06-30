@@ -8,7 +8,6 @@ import { formatCurrency } from '../utils/formatCurrency';
 import PropTypes from 'prop-types';
 
 
-
 const ProductDetailPage = ({ products, vendors, categories }) => {
   const { productId } = useParams();
 useEffect(() => {
