@@ -1,6 +1,7 @@
 const API_BASE ='https://bhaba-web.onrender.com';
 
 
+
 export const handleResponse = async (response) => {
   const contentType = response.headers.get('content-type');
   
