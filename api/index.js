@@ -749,20 +749,112 @@ app.delete("/vendors/:vendorId/categories/:categoryId/products/:productId", asyn
 });
 
 // Search products with query
+// app.get("/search", async (req, res) => {
+//   try {
+//     const { q, limit = 20, offset = 0, filter } = req.query;
+    
+//     const searchOptions = {
+//       limit: parseInt(limit),
+//       offset: parseInt(offset)
+//     };
+    
+//     // Only use filter if it's for category_name (the only filterable attribute)
+//     if (filter && filter.includes('category_name')) {
+//       searchOptions.filter = filter;
+//     }
+    
+//     const searchResult = await index.search(q || '', searchOptions);
+    
+//     const products = searchResult.hits.map(hit => ({
+//       id: hit.productId,
+//       productId: hit.productId,
+//       product_name: hit.product_name,
+//       price: hit.price,
+//       description: hit.description,
+//       discount: hit.discount,
+//       details: hit.details,
+//       tier_pricing: hit.tier_pricing,
+//       //product_images: hit.product_images,
+//       product_images: (hit.product_images || []).map(imgUrl => transformFirebaseUrlToImageKit(imgUrl)),
+//       //product_images: ["https://i.ibb.co/cm382jK/images-2.jpg"],
+//       //product_video_url: hit.product_video_url,
+//       mobile_number: hit.mobile_number,
+//       isAvailable: hit.isAvailable,
+//       moq: hit.moq,
+//       added_at: hit.added_at,
+//       vendorId: hit.vendorId,
+//       vendorName: hit.vendor_name,
+//       categoryId: hit.categoryId,
+//       categoryName: hit.category_name,
+//       //store_logo: hit.store_logo
+//     }));
+    
+//     res.json({
+//       hits: products,
+//       totalHits: searchResult.totalHits,
+//       totalPages: Math.ceil(searchResult.totalHits / parseInt(limit)),
+//       currentPage: Math.floor(parseInt(offset) / parseInt(limit)) + 1
+//     });
+//   } catch (error) {
+//     console.error("Error searching products:", error);
+//     res.status(500).send("Server error");
+//   }
+// });
+
+// Search products with advanced query
 app.get("/search", async (req, res) => {
   try {
-    const { q, limit = 20, offset = 0, filter } = req.query;
+    const { q, limit = 20, offset = 0, category, vendor, minPrice, maxPrice, inStock, sortBy } = req.query;
     
     const searchOptions = {
       limit: parseInt(limit),
       offset: parseInt(offset)
     };
+
+    // Build filter array
+    const filters = [];
     
-    // Only use filter if it's for category_name (the only filterable attribute)
-    if (filter && filter.includes('category_name')) {
-      searchOptions.filter = filter;
+    if (category) {
+      filters.push(`category_name = "${category}"`);
     }
     
+    if (vendor) {
+      filters.push(`vendorId = "${vendor}"`);
+    }
+    
+    if (minPrice || maxPrice) {
+      const priceFilter = [];
+      if (minPrice) priceFilter.push(`price >= ${minPrice}`);
+      if (maxPrice) priceFilter.push(`price <= ${maxPrice}`);
+      filters.push(priceFilter.join(' AND '));
+    }
+    
+    if (inStock === 'true') {
+      filters.push(`isAvailable = true`);
+    }
+    
+    if (filters.length > 0) {
+      searchOptions.filter = filters;
+    }
+
+    // Sorting options
+    if (sortBy) {
+      switch(sortBy) {
+        case 'price-asc':
+          searchOptions.sort = ['price:asc'];
+          break;
+        case 'price-desc':
+          searchOptions.sort = ['price:desc'];
+          break;
+        case 'newest':
+          searchOptions.sort = ['added_at:desc'];
+          break;
+        case 'discount':
+          searchOptions.sort = ['discount:desc'];
+          break;
+      }
+    }
+
     const searchResult = await index.search(q || '', searchOptions);
     
     const products = searchResult.hits.map(hit => ({
@@ -774,10 +866,7 @@ app.get("/search", async (req, res) => {
       discount: hit.discount,
       details: hit.details,
       tier_pricing: hit.tier_pricing,
-      //product_images: hit.product_images,
       product_images: (hit.product_images || []).map(imgUrl => transformFirebaseUrlToImageKit(imgUrl)),
-      //product_images: ["https://i.ibb.co/cm382jK/images-2.jpg"],
-      //product_video_url: hit.product_video_url,
       mobile_number: hit.mobile_number,
       isAvailable: hit.isAvailable,
       moq: hit.moq,
@@ -786,7 +875,6 @@ app.get("/search", async (req, res) => {
       vendorName: hit.vendor_name,
       categoryId: hit.categoryId,
       categoryName: hit.category_name,
-      //store_logo: hit.store_logo
     }));
     
     res.json({
