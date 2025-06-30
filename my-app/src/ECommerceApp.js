@@ -1,18 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Grid, List, AlertCircle, Loader2, X } from 'lucide-react';
 import ProductCard from './components/ProductCard';
 import FilterModal from './components/FilterModal';
-import { fetchAllProducts, fetchVendors , fetchAllCategories } from './api';
+import PropTypes from 'prop-types';
 
-
-
-const ECommerceApp = () => {
-  const [products, setProducts] = useState([]);
-  const [vendors, setVendors] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ECommerceApp = ({ products = [], vendors = [], categories = [] }) => {
+  // State for UI controls (keep these)
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({
     categories: [],
@@ -28,37 +22,13 @@ const ECommerceApp = () => {
   const productsPerPage = 12;
   const navigate = useNavigate();
 
-    const categoryImages = {
+  const categoryImages = {
     Electronics: '/category-images/electronics.png',
     Shoes: '/category-images/shoes.webp',
     Clothing: '/category-images/clothing.png',
-
   };
 
-
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const [productsData, vendorsData, categoriesData] = await Promise.all([
-        fetchAllProducts(),
-        fetchVendors(),
-        fetchAllCategories() // New API call
-      ]);
-      
-      setProducts(productsData);
-      setVendors(vendorsData);
-      setCategories(categoriesData); // Directly use categories from API
-      
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchData();
-}, []);
+  // Remove the entire useEffect for data fetching - it's no longer needed
 
   const filteredProducts = useMemo(() => {
     let filtered = products.filter(product => {
@@ -117,36 +87,9 @@ useEffect(() => {
     setCurrentPage(1);
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="h-10 w-10 sm:h-12 sm:w-12 animate-spin text-blue-500 mx-auto mb-3 sm:mb-4" />
-          <p className="text-sm sm:text-base text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  // Remove the loading and error states - they're handled in App.js now
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <AlertCircle className="h-10 w-10 sm:h-12 sm:w-12 text-red-500 mx-auto mb-3 sm:mb-4" />
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Something went wrong</h2>
-          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="bg-blue-500 text-white px-4 sm:px-6 py-1 sm:py-2 rounded-md hover:bg-blue-600 transition-colors text-sm sm:text-base"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
+ return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-40">
@@ -399,6 +342,18 @@ useEffect(() => {
       />
     </div>
   );
+};
+
+ECommerceApp.propTypes = {
+  products: PropTypes.array,
+  vendors: PropTypes.array,
+  categories: PropTypes.array
+};
+
+ECommerceApp.defaultProps = {
+  products: [],
+  vendors: [],
+  categories: []
 };
 
 export default ECommerceApp;
